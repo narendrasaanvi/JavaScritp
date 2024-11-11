@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        /* Container for the slider */
+        .slider-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Slider holding images */
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        /* Each image */
+        .slider-image {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Buttons to navigate through the images */
+        button {
+            position: absolute;
+            top: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 10px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Slider Container -->
+    <div class="slider-container">
+        <!-- Slider with images -->
+        <div class="slider">
+            <img src="https://via.placeholder.com/600x300?text=Image+1" alt="Image 1" class="slider-image">
+            <img src="https://via.placeholder.com/600x300?text=Image+2" alt="Image 2" class="slider-image">
+            <img src="https://via.placeholder.com/600x300?text=Image+3" alt="Image 3" class="slider-image">
+        </div>
+        <!-- Navigation Buttons -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slider-image');
+            const totalSlides = slides.length;
+
+            currentSlide += direction;
+
+            // Loop back to the first slide or last slide based on the direction
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+
+            const slider = document.querySelector('.slider');
+            const slideWidth = slides[0].clientWidth;
+
+            // Move the slider to the correct position based on currentSlide
+            slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+    </script>
+
+</body>
+
+</html>
