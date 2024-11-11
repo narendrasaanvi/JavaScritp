@@ -1,0 +1,20 @@
+<!-- Slider Container -->
+<form class="slider-container">
+    <select id="citySelect">
+        <option value="458001">Mandsaur</option>
+        <option value="458002">Ratlam</option>
+    </select>
+</form>
+<p id="pincode"></p>
+
+<script>
+    const citySelect = document.getElementById('citySelect');
+    const pincode = document.getElementById('pincode');
+
+    function citypincode() {
+        pincode.innerHTML = citySelect.value;
+    }
+
+    // Update pincode when the selection changes
+    citySelect.addEventListener('change', citypincode);
+</script>
